@@ -1,0 +1,197 @@
+# JSON Schema Database Vocabulary
+
+**Vocabulary URI**: `https://json-schema.org/extension/database/v1`
+
+## Authors
+
+- https://github.com/SrikrishnanS
+- https://github.com/gregsdennis
+- https://github.com/bchammer
+- https://github.com/Relequestual
+- https://github.com/jviotti
+
+## Abstract
+
+This document specifies a JSON Schema vocabulary that extends JSON Schema with
+keywords for describing database objects and extended data types. The
+vocabulary provides mechanisms to annotate schemas with database metadata such
+as object names, ownership, primary keys, foreign keys, and unique constraints.
+It also introduces an extended type system that includes types commonly found
+in database systems but not represented in standard JSON.
+
+## Conventions
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+## 1. Introduction
+
+JSON is widely used as a data interchange format between database systems and
+applications. While JSON Schema provides validation capabilities for JSON data,
+it lacks mechanisms to express database-specific metadata and extended type
+information. This vocabulary addresses two primary use cases:
+
+1. **Extended Type Annotations**: Database systems commonly support types
+   beyond the standard JSON type system. The `extendedType`, `sqlPrecision`,
+   and `sqlScale` keywords provide hints about the intended type for use by
+   database implementations. All keywords in this group are emitted as
+   annotations.
+
+2. **Database Object Metadata**: When generating schemas from database objects,
+   it is useful to preserve metadata such as object names, ownership, keys, and
+   constraints. The `sqlObjectName`, `sqlObjectOwner`, `sqlObjectType`,
+   `sqlPrimaryKey`, `sqlForeignKey`, and `sqlUnique` keywords capture this
+   information. All keywords in this group are emitted as annotations.
+
+## 2. Extended Type System
+
+### 2.1 The `extendedType` Keyword
+
+The `extendedType` keyword annotates a schema with the intended extended type.
+This keyword produces an annotation only and does not perform validation.
+Implementations MAY use this annotation to guide encoding or storage decisions.
+
+The value of `extendedType` MUST be either a string or a non-empty array of
+unique strings. Each string MUST be one of the following values:
+
+| Type | Description | Serialization |
+|------|-------------|---------------|
+| `object` | JSON object | Native JSON |
+| `array` | JSON array | Native JSON |
+| `string` | JSON string | Native JSON |
+| `number` | JSON number | Native JSON |
+| `integer` | JSON integer | Native JSON |
+| `boolean` | JSON boolean | Native JSON |
+| `null` | JSON null | Native JSON |
+| `date` | Calendar date | [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) date string (e.g., `"2024-01-15"`) |
+| `timestamp` | Date and time without timezone | [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) date-time string (e.g., `"2024-01-15T14:30:00"`) |
+| `timestampTz` | Date and time with timezone | [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) date-time string (e.g., `"2024-01-15T14:30:00Z"`) |
+| `interval` | Duration or period | [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) duration string (e.g., `"P1Y2M3D"`) |
+| `binary` | Raw binary data | Base64-encoded string |
+| `double` | Double-precision float | Native JSON number |
+| `float` | Single-precision float | Native JSON number |
+
+```json
+{ "extendedType": "date" }
+```
+
+```json
+{ "extendedType": [ "date", "timestamp", "timestampTz" ] }
+```
+
+### 2.2 Numeric Precision and Scale
+
+The `sqlPrecision` and `sqlScale` keywords annotate numeric and temporal values
+with precision metadata.
+
+The value of `sqlPrecision` MUST be an integer indicating the total number of
+significant digits for numeric types, or fractional seconds precision for
+temporal types.
+
+The value of `sqlScale` MUST be an integer indicating the number of digits to
+the right of the decimal point.
+
+```json
+{
+  "extendedType": "number",
+  "sqlPrecision": 10,
+  "sqlScale": 2
+}
+```
+
+## 3. Database Object Metadata
+
+### 3.1 Object Identification
+
+The `sqlObjectName` keyword specifies the name of the database object. Its
+value MUST be a string.
+
+The `sqlObjectOwner` keyword specifies the owner or schema of the database
+object. Its value MUST be a string.
+
+The `sqlObjectType` keyword specifies the type of database object. Its value
+MUST be one of: `table`, `view`, or `type`.
+
+```json
+{
+  "type": "object",
+  "sqlObjectName": "EMPLOYEES",
+  "sqlObjectOwner": "HR",
+  "sqlObjectType": "table",
+  "properties": {
+    "EMPLOYEE_ID": { "type": "integer" },
+    "HIRE_DATE": { "extendedType": "date" }
+  }
+}
+```
+
+### 3.2 The `sqlPrimaryKey` Keyword
+
+The `sqlPrimaryKey` keyword specifies the property name or names that
+constitute the primary key. Its value MUST be either a string or a non-empty
+array of unique strings.
+
+```json
+{ "sqlPrimaryKey": "EMPLOYEE_ID" }
+```
+
+```json
+{ "sqlPrimaryKey": [ "ORDER_ID", "LINE_ITEM_ID" ] }
+```
+
+### 3.3 The `sqlForeignKey` Keyword
+
+The `sqlForeignKey` keyword describes foreign key relationships. Its value MUST
+be a non-empty array of unique objects. Each object SHOULD contain
+`sqlObjectName` and `sqlObjectOwner` to identify the referenced object.
+
+```json
+{
+  "sqlForeignKey": [
+    { "sqlObjectName": "DEPARTMENTS", "sqlObjectOwner": "HR" },
+    { "sqlObjectName": "JOBS", "sqlObjectOwner": "HR" }
+  ]
+}
+```
+
+### 3.4 The `sqlUnique` Keyword
+
+The `sqlUnique` keyword describes unique constraints. Its value MUST be a
+non-empty array of arrays, where each inner array is a non-empty array of
+unique strings representing property names.
+
+```json
+{
+  "sqlUnique": [
+    [ "EMAIL" ],
+    [ "FIRST_NAME", "LAST_NAME", "BIRTH_DATE" ]
+  ]
+}
+```
+
+## 4. Complete Example
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "sqlObjectName": "EMPLOYEES",
+  "sqlObjectOwner": "HR",
+  "sqlObjectType": "table",
+  "sqlPrimaryKey": "EMPLOYEE_ID",
+  "sqlUnique": [ [ "EMAIL" ] ],
+  "sqlForeignKey": [
+    { "sqlObjectName": "DEPARTMENTS", "sqlObjectOwner": "HR" }
+  ],
+  "properties": {
+    "EMPLOYEE_ID": { "type": "integer" },
+    "FIRST_NAME": { "type": "string", "maxLength": 50 },
+    "LAST_NAME": { "type": "string", "maxLength": 50 },
+    "EMAIL": { "type": "string", "maxLength": 100 },
+    "HIRE_DATE": { "extendedType": "date" },
+    "SALARY": { "extendedType": "number", "sqlPrecision": 10, "sqlScale": 2 }
+  },
+  "required": [ "EMPLOYEE_ID", "LAST_NAME", "EMAIL", "HIRE_DATE" ]
+}
+```

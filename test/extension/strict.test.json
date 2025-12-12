@@ -1,0 +1,745 @@
+{
+  "target": "../../schemas/extension/strict.json",
+  "tests": [
+    {
+      "description": "Valid boolean schema",
+      "data": true,
+      "valid": true
+    },
+    {
+      "description": "Valid empty object schema",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword",
+      "data": {
+        "type": "object"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - properties keyword",
+      "data": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - required keyword",
+      "data": {
+        "type": "object",
+        "required": [ "id" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $ref keyword",
+      "data": {
+        "$defs": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "$ref": "#/$defs/name"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - allOf keyword",
+      "data": {
+        "allOf": [
+          {
+            "type": "object"
+          },
+          {
+            "required": [ "id" ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - anyOf keyword",
+      "data": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - oneOf keyword",
+      "data": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - not keyword",
+      "data": {
+        "not": {
+          "type": "null"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - if/then/else keywords",
+      "data": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "minLength": 1
+        },
+        "else": {
+          "type": "number"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - items keyword",
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - prefixItems keyword",
+      "data": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - contains keyword",
+      "data": {
+        "type": "array",
+        "contains": {
+          "type": "number"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - additionalProperties keyword",
+      "data": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - patternProperties keyword",
+      "data": {
+        "type": "object",
+        "patternProperties": {
+          "^S_": {
+            "type": "string"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - propertyNames keyword",
+      "data": {
+        "type": "object",
+        "propertyNames": {
+          "pattern": "^[a-z]+$"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - unevaluatedProperties keyword",
+      "data": {
+        "type": "object",
+        "unevaluatedProperties": false
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - unevaluatedItems keyword",
+      "data": {
+        "type": "array",
+        "unevaluatedItems": false
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minLength keyword",
+      "data": {
+        "type": "string",
+        "minLength": 1
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maxLength keyword",
+      "data": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - pattern keyword",
+      "data": {
+        "type": "string",
+        "pattern": "^[a-z]+$"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minimum keyword",
+      "data": {
+        "type": "number",
+        "minimum": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maximum keyword",
+      "data": {
+        "type": "number",
+        "maximum": 100
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - exclusiveMinimum keyword",
+      "data": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - exclusiveMaximum keyword",
+      "data": {
+        "type": "number",
+        "exclusiveMaximum": 100
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - multipleOf keyword",
+      "data": {
+        "type": "number",
+        "multipleOf": 5
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minItems keyword",
+      "data": {
+        "type": "array",
+        "minItems": 1
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maxItems keyword",
+      "data": {
+        "type": "array",
+        "maxItems": 10
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - uniqueItems keyword",
+      "data": {
+        "type": "array",
+        "uniqueItems": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minContains keyword",
+      "data": {
+        "type": "array",
+        "contains": {
+          "type": "number"
+        },
+        "minContains": 1
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maxContains keyword",
+      "data": {
+        "type": "array",
+        "contains": {
+          "type": "number"
+        },
+        "maxContains": 5
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minProperties keyword",
+      "data": {
+        "type": "object",
+        "minProperties": 1
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maxProperties keyword",
+      "data": {
+        "type": "object",
+        "maxProperties": 10
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - dependentRequired keyword",
+      "data": {
+        "type": "object",
+        "dependentRequired": {
+          "foo": [ "bar" ]
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - dependentSchemas keyword",
+      "data": {
+        "type": "object",
+        "dependentSchemas": {
+          "foo": {
+            "required": [ "bar" ]
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - enum keyword",
+      "data": {
+        "enum": [ "red", "green", "blue" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - const keyword",
+      "data": {
+        "const": "fixed"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - format keyword",
+      "data": {
+        "type": "string",
+        "format": "email"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - contentEncoding keyword",
+      "data": {
+        "type": "string",
+        "contentEncoding": "base64"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - contentMediaType keyword",
+      "data": {
+        "type": "string",
+        "contentMediaType": "application/json"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - contentSchema keyword",
+      "data": {
+        "type": "string",
+        "contentMediaType": "application/json",
+        "contentSchema": {
+          "type": "object"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - title keyword",
+      "data": {
+        "title": "My Schema"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - description keyword",
+      "data": {
+        "description": "A description"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - default keyword",
+      "data": {
+        "type": "string",
+        "default": "unknown"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - examples keyword",
+      "data": {
+        "type": "string",
+        "examples": [ "foo", "bar" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - deprecated keyword",
+      "data": {
+        "deprecated": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - readOnly keyword",
+      "data": {
+        "readOnly": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - writeOnly keyword",
+      "data": {
+        "writeOnly": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $id keyword",
+      "data": {
+        "$id": "https://example.com/schema"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $anchor keyword",
+      "data": {
+        "$anchor": "myanchor"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $dynamicAnchor keyword",
+      "data": {
+        "$dynamicAnchor": "mydynamicanchor"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $dynamicRef keyword",
+      "data": {
+        "$dynamicRef": "#mydynamicanchor"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $comment keyword",
+      "data": {
+        "$comment": "This is a comment"
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - extendedType keyword",
+      "data": {
+        "extendedType": "date"
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlObjectName keyword",
+      "data": {
+        "sqlObjectName": "EMPLOYEES"
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlObjectOwner keyword",
+      "data": {
+        "sqlObjectOwner": "HR"
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlObjectType keyword",
+      "data": {
+        "sqlObjectType": "table"
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlPrimaryKey keyword",
+      "data": {
+        "sqlPrimaryKey": "EMPLOYEE_ID"
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlForeignKey keyword",
+      "data": {
+        "sqlForeignKey": [
+          {
+            "sqlObjectName": "DEPARTMENTS",
+            "sqlObjectOwner": "HR"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlUnique keyword",
+      "data": {
+        "sqlUnique": [
+          [ "EMAIL" ]
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlPrecision keyword",
+      "data": {
+        "sqlPrecision": 10
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlScale keyword",
+      "data": {
+        "sqlScale": 2
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - standard and database keywords together",
+      "data": {
+        "type": "object",
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "salary": {
+            "extendedType": "number",
+            "sqlPrecision": 10,
+            "sqlScale": 2
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Unknown keyword at root level is invalid",
+      "data": {
+        "type": "object",
+        "customKeyword": "value"
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword 'x-' extension is invalid",
+      "data": {
+        "type": "object",
+        "x-custom": "value"
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in properties is invalid",
+      "data": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "customValidation": true
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in items is invalid",
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "myKeyword": "test"
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in allOf is invalid",
+      "data": {
+        "allOf": [
+          {
+            "type": "object",
+            "vendor-extension": true
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in anyOf is invalid",
+      "data": {
+        "anyOf": [
+          {
+            "type": "string",
+            "unknownConstraint": 5
+          }
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in $defs is invalid",
+      "data": {
+        "$defs": {
+          "myDef": {
+            "type": "string",
+            "customAttribute": "value"
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in if/then/else is invalid",
+      "data": {
+        "if": {
+          "type": "string"
+        },
+        "then": {
+          "minLength": 1,
+          "extraKeyword": true
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Unknown keyword in nested properties is invalid",
+      "data": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "object",
+            "properties": {
+              "city": {
+                "type": "string",
+                "localizedName": "Stadt"
+              }
+            }
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Misspelled keyword 'propertie' is invalid",
+      "data": {
+        "type": "object",
+        "propertie": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Misspelled keyword 'minimun' is invalid",
+      "data": {
+        "type": "number",
+        "minimun": 0
+      },
+      "valid": false
+    },
+    {
+      "description": "Draft-04 style 'id' keyword is invalid (should be $id)",
+      "data": {
+        "id": "https://example.com/schema"
+      },
+      "valid": false
+    },
+    {
+      "description": "OpenAPI 'nullable' keyword is invalid",
+      "data": {
+        "type": "string",
+        "nullable": true
+      },
+      "valid": false
+    },
+    {
+      "description": "OpenAPI 'discriminator' keyword is invalid",
+      "data": {
+        "type": "object",
+        "discriminator": {
+          "propertyName": "type"
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "OpenAPI 'xml' keyword is invalid",
+      "data": {
+        "type": "object",
+        "xml": {
+          "name": "item"
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "OpenAPI 'externalDocs' keyword is invalid",
+      "data": {
+        "type": "object",
+        "externalDocs": {
+          "url": "https://example.com/docs"
+        }
+      },
+      "valid": false
+    }
+  ]
+}

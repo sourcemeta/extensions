@@ -1,0 +1,7 @@
+.claude/
+scripts/
+specs/database/
+test/
+.editorconfig
+Makefile
+README.markdown

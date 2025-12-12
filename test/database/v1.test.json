@@ -1,0 +1,955 @@
+{
+  "target": "../../schemas/extension/database/v1.json",
+  "tests": [
+    {
+      "description": "Valid empty object schema",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "sqlObjectName as a string",
+      "data": {
+        "sqlObjectName": "EMPLOYEES"
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectName as an empty string",
+      "data": {
+        "sqlObjectName": ""
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectName as a number is invalid",
+      "data": {
+        "sqlObjectName": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectName as null is invalid",
+      "data": {
+        "sqlObjectName": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectName as an array is invalid",
+      "data": {
+        "sqlObjectName": [ "EMPLOYEES" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectName as an object is invalid",
+      "data": {
+        "sqlObjectName": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectName as a boolean is invalid",
+      "data": {
+        "sqlObjectName": true
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectOwner as a string",
+      "data": {
+        "sqlObjectOwner": "HR"
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectOwner as an empty string",
+      "data": {
+        "sqlObjectOwner": ""
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectOwner as a number is invalid",
+      "data": {
+        "sqlObjectOwner": 42
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectOwner as null is invalid",
+      "data": {
+        "sqlObjectOwner": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectOwner as an array is invalid",
+      "data": {
+        "sqlObjectOwner": [ "HR" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectOwner as an object is invalid",
+      "data": {
+        "sqlObjectOwner": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectOwner as a boolean is invalid",
+      "data": {
+        "sqlObjectOwner": false
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as 'table'",
+      "data": {
+        "sqlObjectType": "table"
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectType as 'view'",
+      "data": {
+        "sqlObjectType": "view"
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectType as 'type'",
+      "data": {
+        "sqlObjectType": "type"
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlObjectType as an empty string is invalid",
+      "data": {
+        "sqlObjectType": ""
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as an arbitrary string is invalid",
+      "data": {
+        "sqlObjectType": "procedure"
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as a number is invalid",
+      "data": {
+        "sqlObjectType": 1
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as null is invalid",
+      "data": {
+        "sqlObjectType": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as an array is invalid",
+      "data": {
+        "sqlObjectType": [ "table" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as an object is invalid",
+      "data": {
+        "sqlObjectType": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlObjectType as a boolean is invalid",
+      "data": {
+        "sqlObjectType": true
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as a string",
+      "data": {
+        "sqlPrimaryKey": "EMPLOYEE_ID"
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrimaryKey as an empty string",
+      "data": {
+        "sqlPrimaryKey": ""
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrimaryKey as an array with one string",
+      "data": {
+        "sqlPrimaryKey": [ "EMPLOYEE_ID" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrimaryKey as an array with multiple strings (composite key)",
+      "data": {
+        "sqlPrimaryKey": [ "ORDER_ID", "LINE_ID" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrimaryKey as an array with three strings",
+      "data": {
+        "sqlPrimaryKey": [ "A", "B", "C" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrimaryKey as an empty array is invalid",
+      "data": {
+        "sqlPrimaryKey": []
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as an array with duplicate strings is invalid",
+      "data": {
+        "sqlPrimaryKey": [ "ID", "ID" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as a number is invalid",
+      "data": {
+        "sqlPrimaryKey": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as null is invalid",
+      "data": {
+        "sqlPrimaryKey": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as an object is invalid",
+      "data": {
+        "sqlPrimaryKey": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as a boolean is invalid",
+      "data": {
+        "sqlPrimaryKey": true
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as an array with a number is invalid",
+      "data": {
+        "sqlPrimaryKey": [ 123 ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as an array with mixed types is invalid",
+      "data": {
+        "sqlPrimaryKey": [ "ID", 123 ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrimaryKey as an array with null is invalid",
+      "data": {
+        "sqlPrimaryKey": [ "ID", null ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlForeignKey as an array with one foreign key",
+      "data": {
+        "sqlForeignKey": [
+          {
+            "DEPTID": {
+              "sqlObjectName": "DEPARTMENTS",
+              "sqlObjectOwner": "HR",
+              "sqlColumnName": "DEPARTMENT_ID"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlForeignKey as an array with multiple foreign keys",
+      "data": {
+        "sqlForeignKey": [
+          {
+            "ORDER_ID": {
+              "sqlObjectName": "ORDERS",
+              "sqlObjectOwner": "OE",
+              "sqlColumnName": "ORDERID"
+            },
+            "CUSTOMER_ID": {
+              "sqlObjectName": "ORDERS",
+              "sqlObjectOwner": "OE",
+              "sqlColumnName": "CUSTID"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlForeignKey as an array with multiple separate foreign key objects",
+      "data": {
+        "sqlForeignKey": [
+          {
+            "DEPTID": {
+              "sqlObjectName": "DEPARTMENTS",
+              "sqlObjectOwner": "HR",
+              "sqlColumnName": "DEPARTMENT_ID"
+            }
+          },
+          {
+            "MANAGER_ID": {
+              "sqlObjectName": "EMPLOYEES",
+              "sqlObjectOwner": "HR",
+              "sqlColumnName": "EMPLOYEE_ID"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlForeignKey as an empty array is invalid",
+      "data": {
+        "sqlForeignKey": []
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlForeignKey as a string is invalid",
+      "data": {
+        "sqlForeignKey": "DEPTID"
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlForeignKey as an object is invalid",
+      "data": {
+        "sqlForeignKey": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlForeignKey as null is invalid",
+      "data": {
+        "sqlForeignKey": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlForeignKey as a number is invalid",
+      "data": {
+        "sqlForeignKey": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlForeignKey as a boolean is invalid",
+      "data": {
+        "sqlForeignKey": true
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlUnique as an array with one unique column",
+      "data": {
+        "sqlUnique": [
+          [ "EMAIL" ]
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlUnique as an array with multiple unique columns",
+      "data": {
+        "sqlUnique": [
+          [ "EMAIL" ],
+          [ "PHONE_NUMBER" ]
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlUnique as an array with composite unique constraint",
+      "data": {
+        "sqlUnique": [
+          [ "FIRST_NAME", "LAST_NAME" ]
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlUnique as an array with mixed single and composite constraints",
+      "data": {
+        "sqlUnique": [
+          [ "EMAIL" ],
+          [ "FIRST_NAME", "LAST_NAME" ]
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlUnique as an empty array is invalid",
+      "data": {
+        "sqlUnique": []
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlUnique as a string is invalid",
+      "data": {
+        "sqlUnique": "EMAIL"
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlUnique as an object is invalid",
+      "data": {
+        "sqlUnique": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlUnique as null is invalid",
+      "data": {
+        "sqlUnique": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlUnique as a number is invalid",
+      "data": {
+        "sqlUnique": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlUnique as a boolean is invalid",
+      "data": {
+        "sqlUnique": true
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrecision as a positive integer",
+      "data": {
+        "sqlPrecision": 10
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrecision as zero",
+      "data": {
+        "sqlPrecision": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrecision as a negative integer",
+      "data": {
+        "sqlPrecision": -5
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrecision as a large integer",
+      "data": {
+        "sqlPrecision": 38
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlPrecision as a float is invalid",
+      "data": {
+        "sqlPrecision": 10.5
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrecision as a string is invalid",
+      "data": {
+        "sqlPrecision": "10"
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrecision as null is invalid",
+      "data": {
+        "sqlPrecision": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrecision as an array is invalid",
+      "data": {
+        "sqlPrecision": [ 10 ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrecision as an object is invalid",
+      "data": {
+        "sqlPrecision": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlPrecision as a boolean is invalid",
+      "data": {
+        "sqlPrecision": true
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlScale as a positive integer",
+      "data": {
+        "sqlScale": 2
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlScale as zero",
+      "data": {
+        "sqlScale": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlScale as a negative integer",
+      "data": {
+        "sqlScale": -2
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlScale as a large integer",
+      "data": {
+        "sqlScale": 127
+      },
+      "valid": true
+    },
+    {
+      "description": "sqlScale as a float is invalid",
+      "data": {
+        "sqlScale": 2.5
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlScale as a string is invalid",
+      "data": {
+        "sqlScale": "2"
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlScale as null is invalid",
+      "data": {
+        "sqlScale": null
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlScale as an array is invalid",
+      "data": {
+        "sqlScale": [ 2 ]
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlScale as an object is invalid",
+      "data": {
+        "sqlScale": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "sqlScale as a boolean is invalid",
+      "data": {
+        "sqlScale": true
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as 'object'",
+      "data": {
+        "extendedType": "object"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'array'",
+      "data": {
+        "extendedType": "array"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'string'",
+      "data": {
+        "extendedType": "string"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'number'",
+      "data": {
+        "extendedType": "number"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'integer'",
+      "data": {
+        "extendedType": "integer"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'boolean'",
+      "data": {
+        "extendedType": "boolean"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'null'",
+      "data": {
+        "extendedType": "null"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'date'",
+      "data": {
+        "extendedType": "date"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'timestamp'",
+      "data": {
+        "extendedType": "timestamp"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'timestampTz'",
+      "data": {
+        "extendedType": "timestampTz"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'interval'",
+      "data": {
+        "extendedType": "interval"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'binary'",
+      "data": {
+        "extendedType": "binary"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'double'",
+      "data": {
+        "extendedType": "double"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as 'float'",
+      "data": {
+        "extendedType": "float"
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as an array with one type",
+      "data": {
+        "extendedType": [ "date" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as an array with multiple types",
+      "data": {
+        "extendedType": [ "date", "timestamp", "timestampTz" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as an array with all standard JSON types",
+      "data": {
+        "extendedType": [
+          "object",
+          "array",
+          "string",
+          "number",
+          "integer",
+          "boolean",
+          "null"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as an array with all extended types",
+      "data": {
+        "extendedType": [
+          "date",
+          "timestamp",
+          "timestampTz",
+          "interval",
+          "binary",
+          "double",
+          "float"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as an array with mixed standard and extended types",
+      "data": {
+        "extendedType": [ "string", "date", "null" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType as an array with float and double",
+      "data": {
+        "extendedType": [ "float", "double" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "extendedType with an invalid type value is invalid",
+      "data": {
+        "extendedType": "invalid"
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType with 'datetime' (wrong name) is invalid",
+      "data": {
+        "extendedType": "datetime"
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType with 'time' is invalid",
+      "data": {
+        "extendedType": "time"
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType with 'int' (wrong name) is invalid",
+      "data": {
+        "extendedType": "int"
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType with 'bool' (wrong name) is invalid",
+      "data": {
+        "extendedType": "bool"
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as an empty array is invalid",
+      "data": {
+        "extendedType": []
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as an array with an invalid type is invalid",
+      "data": {
+        "extendedType": [ "date", "invalid" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as a number is invalid",
+      "data": {
+        "extendedType": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as null is invalid",
+      "data": {
+        "extendedType": null
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as an object is invalid",
+      "data": {
+        "extendedType": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as a boolean is invalid",
+      "data": {
+        "extendedType": true
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as an array with a number is invalid",
+      "data": {
+        "extendedType": [ "date", 123 ]
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as an array with null is invalid",
+      "data": {
+        "extendedType": [ "date", null ]
+      },
+      "valid": false
+    },
+    {
+      "description": "extendedType as an array with an object is invalid",
+      "data": {
+        "extendedType": [
+          "date",
+          {}
+        ]
+      },
+      "valid": false
+    },
+    {
+      "description": "Multiple database keywords together - basic object metadata",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR"
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple database keywords together - with primary key",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR",
+        "sqlPrimaryKey": "EMPLOYEE_ID"
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple database keywords together - with composite primary key",
+      "data": {
+        "sqlObjectName": "ORDER_ITEMS",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "OE",
+        "sqlPrimaryKey": [ "ORDER_ID", "LINE_ITEM_ID" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple database keywords together - with unique constraints",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR",
+        "sqlPrimaryKey": "EMPLOYEE_ID",
+        "sqlUnique": [
+          [ "EMAIL" ]
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple database keywords together - with foreign key",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR",
+        "sqlPrimaryKey": "EMPLOYEE_ID",
+        "sqlForeignKey": [
+          {
+            "DEPARTMENT_ID": {
+              "sqlObjectName": "DEPARTMENTS",
+              "sqlObjectOwner": "HR",
+              "sqlColumnName": "DEPARTMENT_ID"
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple database keywords together - numeric column with precision and scale",
+      "data": {
+        "extendedType": "number",
+        "sqlPrecision": 10,
+        "sqlScale": 2
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple database keywords together - timestamp with precision",
+      "data": {
+        "extendedType": "timestamp",
+        "sqlPrecision": 6
+      },
+      "valid": true
+    },
+    {
+      "description": "All database keywords together",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR",
+        "sqlPrimaryKey": "EMPLOYEE_ID",
+        "sqlUnique": [
+          [ "EMAIL" ]
+        ],
+        "sqlForeignKey": [
+          {
+            "DEPARTMENT_ID": {
+              "sqlObjectName": "DEPARTMENTS",
+              "sqlObjectOwner": "HR",
+              "sqlColumnName": "DEPARTMENT_ID"
+            }
+          }
+        ],
+        "extendedType": "object",
+        "sqlPrecision": 10,
+        "sqlScale": 2
+      },
+      "valid": true
+    }
+  ]
+}

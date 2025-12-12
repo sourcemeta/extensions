@@ -1,0 +1,788 @@
+{
+  "target": "../schemas/extension.json",
+  "tests": [
+    {
+      "description": "Valid boolean schema",
+      "data": true,
+      "valid": true
+    },
+    {
+      "description": "Valid empty object schema",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'object'",
+      "data": {
+        "type": "object"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'array'",
+      "data": {
+        "type": "array"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'string'",
+      "data": {
+        "type": "string"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'number'",
+      "data": {
+        "type": "number"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'integer'",
+      "data": {
+        "type": "integer"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'boolean'",
+      "data": {
+        "type": "boolean"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type keyword with 'null'",
+      "data": {
+        "type": "null"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - type as array",
+      "data": {
+        "type": [ "string", "null" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - invalid type value",
+      "data": {
+        "type": "invalid"
+      },
+      "valid": false
+    },
+    {
+      "description": "Standard JSON Schema - properties keyword",
+      "data": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - required keyword",
+      "data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          }
+        },
+        "required": [ "id" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - additionalProperties keyword",
+      "data": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - patternProperties keyword",
+      "data": {
+        "type": "object",
+        "patternProperties": {
+          "^S_": {
+            "type": "string"
+          },
+          "^I_": {
+            "type": "integer"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - items keyword",
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minItems keyword",
+      "data": {
+        "type": "array",
+        "minItems": 1
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maxItems keyword",
+      "data": {
+        "type": "array",
+        "maxItems": 10
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - uniqueItems keyword",
+      "data": {
+        "type": "array",
+        "uniqueItems": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - prefixItems keyword",
+      "data": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minLength keyword",
+      "data": {
+        "type": "string",
+        "minLength": 1
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maxLength keyword",
+      "data": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - pattern keyword",
+      "data": {
+        "type": "string",
+        "pattern": "^[a-z]+$"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - format keyword",
+      "data": {
+        "type": "string",
+        "format": "email"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - minimum keyword",
+      "data": {
+        "type": "number",
+        "minimum": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - maximum keyword",
+      "data": {
+        "type": "number",
+        "maximum": 100
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - exclusiveMinimum keyword",
+      "data": {
+        "type": "number",
+        "exclusiveMinimum": 0
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - exclusiveMaximum keyword",
+      "data": {
+        "type": "number",
+        "exclusiveMaximum": 100
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - multipleOf keyword",
+      "data": {
+        "type": "number",
+        "multipleOf": 5
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - enum keyword",
+      "data": {
+        "enum": [ "red", "green", "blue" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - const keyword",
+      "data": {
+        "const": "fixed-value"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - allOf keyword",
+      "data": {
+        "allOf": [
+          {
+            "type": "object"
+          },
+          {
+            "required": [ "id" ]
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - anyOf keyword",
+      "data": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - oneOf keyword",
+      "data": {
+        "oneOf": [
+          {
+            "type": "string",
+            "maxLength": 5
+          },
+          {
+            "type": "string",
+            "minLength": 10
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - not keyword",
+      "data": {
+        "not": {
+          "type": "null"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - if/then/else keywords",
+      "data": {
+        "if": {
+          "properties": {
+            "type": {
+              "const": "A"
+            }
+          }
+        },
+        "then": {
+          "required": [ "a_field" ]
+        },
+        "else": {
+          "required": [ "b_field" ]
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - $ref keyword",
+      "data": {
+        "$defs": {
+          "address": {
+            "type": "object",
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "home": {
+            "$ref": "#/$defs/address"
+          },
+          "work": {
+            "$ref": "#/$defs/address"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - title and description",
+      "data": {
+        "title": "Person",
+        "description": "A person schema",
+        "type": "object"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - default keyword",
+      "data": {
+        "type": "string",
+        "default": "unknown"
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - examples keyword",
+      "data": {
+        "type": "string",
+        "examples": [ "foo", "bar" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - deprecated keyword",
+      "data": {
+        "type": "string",
+        "deprecated": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - readOnly keyword",
+      "data": {
+        "type": "string",
+        "readOnly": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Standard JSON Schema - writeOnly keyword",
+      "data": {
+        "type": "string",
+        "writeOnly": true
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - extendedType with standard JSON Schema",
+      "data": {
+        "type": "object",
+        "properties": {
+          "birthDate": {
+            "extendedType": "date"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - sqlPrecision with standard JSON Schema",
+      "data": {
+        "type": "object",
+        "properties": {
+          "salary": {
+            "type": "number",
+            "sqlPrecision": 10,
+            "sqlScale": 2
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Database vocabulary - table metadata with standard JSON Schema",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [ "id" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - full table schema with all features",
+      "data": {
+        "sqlObjectName": "EMPLOYEES",
+        "sqlObjectType": "table",
+        "sqlObjectOwner": "HR",
+        "title": "Employees Table",
+        "description": "Contains employee records",
+        "type": "object",
+        "sqlPrimaryKey": "EMPLOYEE_ID",
+        "sqlUnique": [
+          [ "EMAIL" ]
+        ],
+        "sqlForeignKey": [
+          {
+            "DEPARTMENT_ID": {
+              "sqlObjectName": "DEPARTMENTS",
+              "sqlObjectOwner": "HR",
+              "sqlColumnName": "DEPARTMENT_ID"
+            }
+          }
+        ],
+        "properties": {
+          "EMPLOYEE_ID": {
+            "type": "integer",
+            "description": "Primary key"
+          },
+          "FIRST_NAME": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "LAST_NAME": {
+            "type": "string",
+            "maxLength": 50
+          },
+          "EMAIL": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 100
+          },
+          "PHONE_NUMBER": {
+            "type": "string",
+            "pattern": "^[0-9-]+$",
+            "maxLength": 20
+          },
+          "HIRE_DATE": {
+            "extendedType": "date",
+            "description": "Date of hire"
+          },
+          "SALARY": {
+            "extendedType": "number",
+            "sqlPrecision": 8,
+            "sqlScale": 2,
+            "minimum": 0
+          },
+          "DEPARTMENT_ID": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "EMPLOYEE_ID",
+          "FIRST_NAME",
+          "LAST_NAME",
+          "EMAIL",
+          "HIRE_DATE"
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - database type with standard JSON Schema",
+      "data": {
+        "sqlObjectName": "ADDRESS_TYP",
+        "sqlObjectOwner": "SCOTT",
+        "sqlObjectType": "type",
+        "title": "Address Type",
+        "type": "object",
+        "properties": {
+          "STREET": {
+            "extendedType": "string",
+            "maxLength": 100
+          },
+          "CITY": {
+            "extendedType": "string",
+            "maxLength": 50
+          },
+          "STATE": {
+            "extendedType": "string",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "ZIP": {
+            "type": "string",
+            "pattern": "^[0-9]{5}(-[0-9]{4})?$"
+          }
+        },
+        "required": [ "STREET", "CITY", "STATE", "ZIP" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - nested properties with database keywords",
+      "data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 20
+          },
+          "birthDate": {
+            "extendedType": "date"
+          },
+          "salary": {
+            "extendedType": "number",
+            "sqlPrecision": 10,
+            "sqlScale": 2,
+            "minimum": 0,
+            "maximum": 1000000
+          },
+          "addresses": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "properties": {
+                "street": {
+                  "type": "string",
+                  "maxLength": 100
+                },
+                "city": {
+                  "type": "string",
+                  "maxLength": 50
+                },
+                "zip": {
+                  "type": "string",
+                  "pattern": "^[0-9]{5}$"
+                }
+              },
+              "required": [ "street", "city", "zip" ]
+            }
+          }
+        },
+        "required": [ "id", "name" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - using allOf with database keywords",
+      "data": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            },
+            "required": [ "id" ]
+          },
+          {
+            "properties": {
+              "createdAt": {
+                "extendedType": "timestamp"
+              },
+              "updatedAt": {
+                "extendedType": "timestampTz"
+              }
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - using $ref with database keywords in definitions",
+      "data": {
+        "$defs": {
+          "timestamp_field": {
+            "extendedType": "timestamp",
+            "sqlPrecision": 6
+          },
+          "money_field": {
+            "extendedType": "number",
+            "sqlPrecision": 15,
+            "sqlScale": 2,
+            "minimum": 0
+          }
+        },
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "$ref": "#/$defs/timestamp_field"
+          },
+          "updated_at": {
+            "$ref": "#/$defs/timestamp_field"
+          },
+          "price": {
+            "$ref": "#/$defs/money_field"
+          },
+          "discount": {
+            "$ref": "#/$defs/money_field"
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - conditional schema with database keywords",
+      "data": {
+        "type": "object",
+        "properties": {
+          "dataType": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "if": {
+          "properties": {
+            "dataType": {
+              "const": "date"
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "value": {
+              "extendedType": "date"
+            }
+          }
+        },
+        "else": {
+          "if": {
+            "properties": {
+              "dataType": {
+                "const": "timestamp"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "extendedType": "timestamp"
+              }
+            }
+          }
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "Combined - anyOf with different extended types",
+      "data": {
+        "anyOf": [
+          {
+            "extendedType": "date"
+          },
+          {
+            "extendedType": "timestamp"
+          },
+          {
+            "extendedType": "timestampTz"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "description": "Invalid - database keyword with wrong type in combined schema",
+      "data": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "extendedType": "invalid_type"
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid - sqlPrecision with wrong type in combined schema",
+      "data": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "sqlPrecision": "ten"
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid - standard JSON Schema type with wrong value",
+      "data": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "text"
+          }
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid - required must be an array",
+      "data": {
+        "type": "object",
+        "required": "id"
+      },
+      "valid": false
+    },
+    {
+      "description": "Invalid - minItems must be non-negative",
+      "data": {
+        "type": "array",
+        "minItems": -1
+      },
+      "valid": false
+    }
+  ]
+}
