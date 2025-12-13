@@ -1,5 +1,5 @@
 {
-  "target": "../schemas/extension.json",
+  "target": "../../schemas/extension/schema.json",
   "tests": [
     {
       "description": "Valid boolean schema",
