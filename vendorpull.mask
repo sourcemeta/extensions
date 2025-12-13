@@ -1,7 +1,6 @@
-.claude/
-scripts/
-specs/database/
-test/
+scripts
+specs
+test
 .editorconfig
 Makefile
 README.markdown
