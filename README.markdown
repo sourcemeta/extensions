@@ -1,8 +1,7 @@
 # JSON Schema Extensions Registry
 
-A growing collection of community-driven vocabulary extensions to JSON Schema.
-This repository provides standardized vocabulary definitions and meta-schemas
-for common use cases not covered by the core JSON Schema specification.
+A growing collection of officially recognised vocabulary extensions to JSON
+Schema for common use cases not covered by the core JSON Schema specification.
 
 ## Available Extensions
 
