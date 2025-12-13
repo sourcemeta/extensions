@@ -37,7 +37,7 @@
       "sqlScale": 2
     }
   ],
-  "x-documentation": "https://github.com/sourcemeta-research/vocabularies",
+  "x-documentation": "https://github.com/sourcemeta/extensions",
   "allOf": [
     {
       "$ref": "https://json-schema.org/draft/2020-12/schema"

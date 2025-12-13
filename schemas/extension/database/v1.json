@@ -22,7 +22,7 @@
       "sqlScale": 2
     }
   ],
-  "x-documentation": "https://github.com/sourcemeta-research/vocabularies/blob/main/specs/database/v1.markdown",
+  "x-documentation": "https://github.com/sourcemeta/extensions",
   "properties": {
     "sqlObjectName": {
       "description": "Name of the database object being described",
