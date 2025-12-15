@@ -4,3 +4,4 @@ test
 .editorconfig
 Makefile
 README.markdown
+assets
