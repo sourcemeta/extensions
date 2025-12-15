@@ -5,9 +5,9 @@ Schema for common use cases not covered by the core JSON Schema specification.
 
 ## Available Extensions
 
-| Extension | Description | Version | Vocabulary URI |
+| Extension | Description | Version | Partners       |
 |-----------|-------------|---------|----------------|
-| [Database](./specs/database/v1.markdown) | Keywords for describing database objects and extended types | 1 | `https://json-schema.org/extension/database/v1` |
+| [Database](./specs/database/v1.markdown) | Keywords for describing database objects and extended types | 1 | <a href="https://www.oracle.com"><img src="./assets/oracle.svg" width="80"></a> |
 
 ## JSON Schema Version Compatibility
 
