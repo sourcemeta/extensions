@@ -5,7 +5,7 @@
   },
   "$dynamicAnchor": "meta",
   "title": "Database Vocabulary",
-  "description": "Keywords for describing database objects and extended types in JSON Schema",
+  "description": "Keywords for describing database objects and extended types",
   "examples": [
     {
       "sqlObjectName": "EMPLOYEES",
