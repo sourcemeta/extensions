@@ -1,0 +1,522 @@
+{
+  "target": "../../schemas/extension/wot/v1.json",
+  "tests": [
+    {
+      "description": "Valid empty object schema",
+      "data": {},
+      "valid": true
+    },
+    {
+      "description": "@type as a string",
+      "data": {
+        "@type": "saref:Temperature"
+      },
+      "valid": true
+    },
+    {
+      "description": "@type as an empty string",
+      "data": {
+        "@type": ""
+      },
+      "valid": true
+    },
+    {
+      "description": "@type as an array with one string",
+      "data": {
+        "@type": [ "saref:Temperature" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "@type as an array with multiple strings",
+      "data": {
+        "@type": [ "saref:Temperature", "schema:QuantitativeValue" ]
+      },
+      "valid": true
+    },
+    {
+      "description": "@type as an empty array is invalid",
+      "data": {
+        "@type": []
+      },
+      "valid": false
+    },
+    {
+      "description": "@type as a number is invalid",
+      "data": {
+        "@type": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "@type as null is invalid",
+      "data": {
+        "@type": null
+      },
+      "valid": false
+    },
+    {
+      "description": "@type as an object is invalid",
+      "data": {
+        "@type": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "@type as a boolean is invalid",
+      "data": {
+        "@type": true
+      },
+      "valid": false
+    },
+    {
+      "description": "@type as an array with a number is invalid",
+      "data": {
+        "@type": [ "saref:Temperature", 123 ]
+      },
+      "valid": false
+    },
+    {
+      "description": "@type as an array with null is invalid",
+      "data": {
+        "@type": [ "saref:Temperature", null ]
+      },
+      "valid": false
+    },
+    {
+      "description": "titles with one language",
+      "data": {
+        "titles": {
+          "en": "Temperature"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "titles with multiple languages",
+      "data": {
+        "titles": {
+          "en": "Temperature",
+          "de": "Temperatur",
+          "ja": "温度"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "titles with region subtag",
+      "data": {
+        "titles": {
+          "en-US": "Temperature",
+          "en-GB": "Temperature"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "titles with script subtag",
+      "data": {
+        "titles": {
+          "zh-Hans": "温度",
+          "zh-Hant": "溫度"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "titles as an empty object is invalid",
+      "data": {
+        "titles": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "titles as a string is invalid",
+      "data": {
+        "titles": "Temperature"
+      },
+      "valid": false
+    },
+    {
+      "description": "titles as an array is invalid",
+      "data": {
+        "titles": [ "Temperature" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "titles as null is invalid",
+      "data": {
+        "titles": null
+      },
+      "valid": false
+    },
+    {
+      "description": "titles as a number is invalid",
+      "data": {
+        "titles": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "titles as a boolean is invalid",
+      "data": {
+        "titles": true
+      },
+      "valid": false
+    },
+    {
+      "description": "titles with invalid language tag is invalid",
+      "data": {
+        "titles": {
+          "123": "Temperature"
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "titles with non-string value is invalid",
+      "data": {
+        "titles": {
+          "en": 123
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "titles with null value is invalid",
+      "data": {
+        "titles": {
+          "en": null
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "titles with object value is invalid",
+      "data": {
+        "titles": {
+          "en": {}
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions with one language",
+      "data": {
+        "descriptions": {
+          "en": "The current temperature reading"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "descriptions with multiple languages",
+      "data": {
+        "descriptions": {
+          "en": "The current temperature reading",
+          "de": "Der aktuelle Temperaturwert",
+          "ja": "現在の温度測定値"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "descriptions with region subtag",
+      "data": {
+        "descriptions": {
+          "en-US": "The current temperature reading",
+          "en-GB": "The current temperature reading"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "descriptions with script subtag",
+      "data": {
+        "descriptions": {
+          "zh-Hans": "当前温度读数",
+          "zh-Hant": "當前溫度讀數"
+        }
+      },
+      "valid": true
+    },
+    {
+      "description": "descriptions as an empty object is invalid",
+      "data": {
+        "descriptions": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions as a string is invalid",
+      "data": {
+        "descriptions": "The current temperature reading"
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions as an array is invalid",
+      "data": {
+        "descriptions": [ "The current temperature reading" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions as null is invalid",
+      "data": {
+        "descriptions": null
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions as a number is invalid",
+      "data": {
+        "descriptions": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions as a boolean is invalid",
+      "data": {
+        "descriptions": true
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions with invalid language tag is invalid",
+      "data": {
+        "descriptions": {
+          "123": "The current temperature reading"
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions with non-string value is invalid",
+      "data": {
+        "descriptions": {
+          "en": 123
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions with null value is invalid",
+      "data": {
+        "descriptions": {
+          "en": null
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "descriptions with object value is invalid",
+      "data": {
+        "descriptions": {
+          "en": {}
+        }
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as a base SI unit symbol (second)",
+      "data": {
+        "unit": "s"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a base SI unit symbol (metre)",
+      "data": {
+        "unit": "m"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a base SI unit symbol (kilogram)",
+      "data": {
+        "unit": "kg"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a base SI unit symbol (ampere)",
+      "data": {
+        "unit": "A"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a base SI unit symbol (kelvin)",
+      "data": {
+        "unit": "K"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (hertz)",
+      "data": {
+        "unit": "Hz"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (newton)",
+      "data": {
+        "unit": "N"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (pascal)",
+      "data": {
+        "unit": "Pa"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (joule)",
+      "data": {
+        "unit": "J"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (watt)",
+      "data": {
+        "unit": "W"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (volt)",
+      "data": {
+        "unit": "V"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (ohm)",
+      "data": {
+        "unit": "Ω"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as a derived SI unit symbol (degree Celsius)",
+      "data": {
+        "unit": "°C"
+      },
+      "valid": true
+    },
+    {
+      "description": "unit as an invalid string is invalid",
+      "data": {
+        "unit": "invalid"
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as an empty string is invalid",
+      "data": {
+        "unit": ""
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as a number is invalid",
+      "data": {
+        "unit": 123
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as null is invalid",
+      "data": {
+        "unit": null
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as an array is invalid",
+      "data": {
+        "unit": [ "m" ]
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as an object is invalid",
+      "data": {
+        "unit": {}
+      },
+      "valid": false
+    },
+    {
+      "description": "unit as a boolean is invalid",
+      "data": {
+        "unit": true
+      },
+      "valid": false
+    },
+    {
+      "description": "Multiple WoT keywords together - basic sensor metadata",
+      "data": {
+        "@type": "saref:Temperature",
+        "titles": {
+          "en": "Temperature"
+        },
+        "unit": "°C"
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple WoT keywords together - with descriptions",
+      "data": {
+        "@type": "saref:Temperature",
+        "titles": {
+          "en": "Temperature",
+          "de": "Temperatur"
+        },
+        "descriptions": {
+          "en": "The current temperature reading",
+          "de": "Der aktuelle Temperaturwert"
+        },
+        "unit": "°C"
+      },
+      "valid": true
+    },
+    {
+      "description": "Multiple WoT keywords together - with multiple types",
+      "data": {
+        "@type": [ "saref:Temperature", "schema:QuantitativeValue" ],
+        "titles": {
+          "en": "Temperature Value"
+        },
+        "descriptions": {
+          "en": "A temperature measurement"
+        },
+        "unit": "K"
+      },
+      "valid": true
+    },
+    {
+      "description": "All WoT keywords together",
+      "data": {
+        "@type": [ "saref:TemperatureSensor", "schema:Thing" ],
+        "titles": {
+          "en": "Temperature Sensor",
+          "de": "Temperatursensor",
+          "ja": "温度センサー"
+        },
+        "descriptions": {
+          "en": "A sensor that measures ambient temperature",
+          "de": "Ein Sensor, der die Umgebungstemperatur misst",
+          "ja": "周囲温度を測定するセンサー"
+        },
+        "unit": "°C"
+      },
+      "valid": true
+    }
+  ]
+}

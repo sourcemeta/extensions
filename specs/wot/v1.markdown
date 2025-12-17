@@ -1,0 +1,105 @@
+# JSON Schema Web of Things Vocabulary
+
+**Vocabulary URI**: `https://json-schema.org/extension/wot/v1`
+
+## Authors
+
+- https://github.com/mmccool
+- https://github.com/egekorkan
+- https://github.com/sebastiankb
+- https://github.com/jviotti
+
+## Abstract
+
+This document specifies a JSON Schema vocabulary that extends JSON Schema with
+keywords from the W3C Web of Things (WoT) Thing Description specification. The
+vocabulary provides mechanisms to annotate schemas with semantic type
+information, multi-language human-readable metadata, and physical unit
+information.
+
+## Conventions
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
+"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
+interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+## 1. Introduction
+
+The [W3C Web of Things Thing Description
+1.1](https://www.w3.org/TR/wot-thing-description11/) specification defines a
+standard format for describing IoT devices and their capabilities. A key
+component of this specification is the Data Schema, which describes the data
+format used for validation. This vocabulary brings the WoT Data Schema
+extension keywords to JSON Schema. All keywords in this vocabulary are emitted as
+annotations and do not perform validation.
+
+## 2. The `@type` Keyword
+
+The `@type` keyword provides a JSON-LD mechanism that links definitions in a
+schema to concepts in an RDF ontology. This enables semantic interoperability
+by associating schema elements with well-defined terms from external
+vocabularies.
+
+The value of `@type` MUST be either a string or a non-empty array of strings.
+Each string SHOULD be a valid URI or compact URI (CURIE) referencing a term in
+an ontology.
+
+```json
+{ "@type": "saref:Temperature" }
+```
+
+```json
+{ "@type": [ "saref:Temperature", "schema:QuantitativeValue" ] }
+```
+
+## 3. The `titles` Keyword
+
+The `titles` keyword provides multi-language human-readable titles for a
+schema.
+
+The value of `titles` MUST be an object with at least one property. Each
+property name MUST be a valid [BCP 47](https://www.rfc-editor.org/rfc/rfc5646)
+language tag, and each property value MUST be a string containing the title in
+that language.
+
+```json
+{
+  "titles": {
+    "en": "Temperature",
+    "de": "Temperatur"
+  }
+}
+```
+
+## 4. The `descriptions` Keyword
+
+The `descriptions` keyword provides multi-language human-readable descriptions
+for a schema.
+
+The value of `descriptions` MUST be an object with at least one property. Each
+property name MUST be a valid [BCP 47](https://www.rfc-editor.org/rfc/rfc5646)
+language tag, and each property value MUST be a string containing the
+description in that language.
+
+```json
+{
+  "descriptions": {
+    "en": "The current temperature reading from the sensor",
+    "de": "Der aktuelle Temperaturwert vom Sensor"
+  }
+}
+```
+
+## 5. The `unit` Keyword
+
+The `unit` keyword annotates a schema with physical unit information. The value
+of `unit` MUST be a string representing a valid SI unit symbol as defined in
+the [SI Brochure (9th edition,
+2019)](https://www.bipm.org/en/publications/si-brochure).
+
+```json
+{
+  "type": "number",
+  "unit": "°C"
+}
+```

@@ -2,5 +2,11 @@
   "title": "The JSON Schema registry of extensions",
   "description": "A growing collection of popular extensions to JSON Schema",
   "github": "sourcemeta/extensions",
-  "path": "./schemas"
+  "path": "./schemas",
+  "resolve": {
+    "https://schemas.sourcemeta.com/sourcemeta/std/v0/bipm/si/2019/symbol": "../vendor/std/schemas/2020-12/bipm/si/2019/symbol.json",
+    "https://schemas.sourcemeta.com/sourcemeta/std/v0/bipm/si/2019/base/symbol.json": "../vendor/std/schemas/2020-12/bipm/si/2019/base/symbol.json",
+    "https://schemas.sourcemeta.com/sourcemeta/std/v0/bipm/si/2019/derived/symbol.json": "../vendor/std/schemas/2020-12/bipm/si/2019/derived/symbol.json",
+    "https://schemas.sourcemeta.com/sourcemeta/std/v0/ietf/language/5646/tag-syntax": "../vendor/std/schemas/2020-12/ietf/language/5646/tag-syntax.json"
+  }
 }

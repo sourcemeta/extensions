@@ -8,7 +8,8 @@
     "https://json-schema.org/draft/2020-12/vocab/meta-data": true,
     "https://json-schema.org/draft/2020-12/vocab/format-annotation": true,
     "https://json-schema.org/draft/2020-12/vocab/content": true,
-    "https://json-schema.org/extension/database/v1": false
+    "https://json-schema.org/extension/database/v1": false,
+    "https://json-schema.org/extension/wot/v1": false
   },
   "$dynamicAnchor": "meta",
   "title": "JSON Schema Extensions Meta-Schema",
@@ -44,6 +45,9 @@
     },
     {
       "$ref": "./database/v1.json"
+    },
+    {
+      "$ref": "./wot/v1.json"
     }
   ]
 }

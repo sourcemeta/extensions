@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$vocabulary": {
+    "https://json-schema.org/extension/wot/v1": false
+  },
+  "$dynamicAnchor": "meta",
+  "title": "W3C Thing Description Vocabulary",
+  "description": "Keywords for describing an abstraction of a physical or virtual entity that provides interactions to and participates in the Web of Things",
+  "examples": [
+    {
+      "@type": "saref:Temperature",
+      "titles": {
+        "en": "Temperature"
+      },
+      "unit": "°C"
+    },
+    {
+      "titles": {
+        "en": "Sensor Reading",
+        "de": "Sensorwert"
+      },
+      "descriptions": {
+        "en": "The current sensor reading",
+        "de": "Der aktuelle Sensorwert"
+      }
+    },
+    {
+      "@type": [ "saref:TemperatureSensor", "schema:Thing" ],
+      "unit": "K"
+    }
+  ],
+  "x-documentation": "https://github.com/sourcemeta/extensions",
+  "properties": {
+    "@type": {
+      "description": "A JSON-LD mechanism that links definitions in a Thing Descriptions document to concepts in an (RDF) ontology",
+      "type": [ "string", "array" ],
+      "minItems": 1,
+      "items": {
+        "$comment": "TODO: Have this properly defined in the std",
+        "type": "string"
+      }
+    },
+    "titles": {
+      "description": "Provides multi-language human-readable titles",
+      "$ref": "#/$defs/multilanguage"
+    },
+    "descriptions": {
+      "description": "Provides multi-language human-readable descriptions",
+      "$ref": "#/$defs/multilanguage"
+    },
+    "unit": {
+      "description": "Provides unit information",
+      "$ref": "https://schemas.sourcemeta.com/sourcemeta/std/v0/bipm/si/2019/symbol"
+    }
+  },
+  "$defs": {
+    "multilanguage": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "https://schemas.sourcemeta.com/sourcemeta/std/v0/ietf/language/5646/tag-syntax"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}
